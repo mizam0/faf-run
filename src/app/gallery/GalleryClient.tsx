@@ -31,17 +31,6 @@ export default function GalleryClient() {
                 photos={photos}
                 targetRowHeight={300}
                 onClick={({ index }) => setIndex(index)}
-                renderPhoto={({ photo, imageProps }) => (
-                    <div className="overflow-hidden rounded-xl cursor-pointer group">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            {...imageProps}
-                            alt={photo.title ?? ""}
-                            className="transition-transform duration-500 group-hover:scale-110 w-full h-full object-cover"
-                            style={{ ...imageProps.style, display: "block" }}
-                        />
-                    </div>
-                )}
             />
 
             <Lightbox
