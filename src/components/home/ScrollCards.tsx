@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import Image from "next/image";
 import {
     useScroll,
@@ -19,56 +19,70 @@ interface CardData {
 
 const coaches: CardData[] = [
     {
-        name: "Александр Петров",
-        role: "Главный тренер",
-        bio: "Мастер спорта России. 20 лет тренерской работы. Воспитал более 50 призёров всероссийских соревнований.",
-        image: "/images/coach-1.jpg",
-        achievements: "МСМК по лёгкой атлетике",
+        name: "Абакумова Галина Викторовна",
+        role: "Тренер",
+        bio: "Стаж работы 40 лет. Ставит технику бега с нуля до золотых медалей.",
+        image: "/images/coach-1.webp",
+        achievements: "Заслуженный тренер России",
     },
     {
-        name: "Дмитрий Козлов",
-        role: "Тренер по бегу",
-        bio: "КМС по спринту. Специализация — бег на короткие и средние дистанции. Работает с детьми 8 лет.",
-        image: "/images/coach-2.jpg",
-        achievements: "КМС по спринту",
+        name: "Абакумова Мария Васильевна",
+        role: "Тренер",
+        bio: "Заслуженный мастер спорта России по легкой атлетике. Стаж работы тренером 8 лет.",
+        image: "/images/coach--2.webp",
+        achievements: "Чемпионка мира 2011 года",
     },
     {
-        name: "Елена Смирнова",
-        role: "Тренер дошкольного отделения",
-        bio: "Специалист по физическому воспитанию дошкольников. Автор программы адаптации малышей к спорту.",
-        image: "/images/coach-3.jpg",
-        achievements: "Педагог высшей категории",
+        name: "Гребенюк Виктория Константиновна",
+        role: "Тренер/Инструктор",
+        bio: "Стаж работы тренером 3 года. Девиз: «С нами бег становится лёгким»",
+        image: "/images/coach--3.webp",
+        achievements: "КМС по легкой атлетике",
+    },
+    {
+        name: "Сизова Юлия Валентиновна",
+        role: "Тренер/Инструктор",
+        bio: "Стаж работы 2 года. Девиз: «Cтавим технику, заряжаем энергией»",
+        image: "/images/coach--4.webp",
+        achievements: "КМС по легкой атлетике",
     },
 ];
 
 const champions: CardData[] = [
     {
-        name: "Иван Громов",
-        role: "Выпускник 2022",
-        bio: "Чемпион России среди юниоров в беге на 400 м. Выступает за сборную Москвы.",
+        name: "Виктория Романаускас",
+        role: "Бег на 1км - 3.26",
+        bio: "Чемпионка Сириус-Автодром 2026\nЧемпионка города",
         image: "/images/champion-1.jpg",
-        achievements: "🥇 ЧР среди юниоров",
+        achievements: "",
     },
     {
-        name: "Мария Власова",
-        role: "Выпускница 2021",
-        bio: "Призёр первенства России в прыжках в высоту. Участница юношеского чемпионата Европы.",
+        name: "Ева Свистунова",
+        role: "Бег на 1км - 4.02",
+        bio: "Призер первенства города 2025/26\nПризер Кросс Нации 2026",
         image: "/images/champion-2.jpg",
-        achievements: "🥈 Первенство России",
+        achievements: "",
     },
     {
-        name: "Артём Лебедев",
-        role: "Действующий воспитанник",
-        bio: "14 лет. Рекордсмен Москвы среди своей возрастной группы в беге на 100 м.",
+        name: "Максим Банин",
+        role: "Бег на 1км - 3.25",
+        bio: "Чемпион Кросс Нациии 2025\nЧемпион города 2026\nПобедить пробега HARD RUN",
         image: "/images/champion-3.jpg",
-        achievements: "📍 Рекорд Москвы",
+        achievements: "",
     },
     {
-        name: "Кира Фёдорова",
-        role: "Выпускница 2023",
-        bio: "Мастер спорта. Победительница Кубка России, участница национального первенства.",
+        name: "Виктория Резвухина",
+        role: "Бег на 1км - 4.02",
+        bio: "Победительница кросса нации 2025\nПризер первенства города\nПобедить пробега HDRD RUN",
         image: "/images/champion-4.jpg",
-        achievements: "🏆 Кубок России",
+        achievements: "",
+    },
+    {
+        name: "Кира Тарабина",
+        role: "Бег на 1 км - 3.25",
+        bio: "Чемпионка края\nЧемпионка Сириус автодром\nЧемпионка Совкомбанк Сочи марафон",
+        image: "/images/champion-5.jpg",
+        achievements: "",
     },
 ];
 
@@ -78,12 +92,34 @@ function useCardTransform(
     total: number,
     spread: number
 ) {
-    const center = 0.5;
-    const offset = (index - (total - 1) / 2) * spread;
-    const x = useTransform(progress, [0, 1], [0, offset]);
-    const scale = useTransform(progress, [0, 0.5, 1], [0.88, 0.95, 1]);
-    const opacity = useTransform(progress, [0, 0.3], [0.7, 1]);
-    return { x, scale, opacity };
+    const center = (total - 1) / 2;
+    const distance = index - center;
+
+    const x = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [0, distance * spread, distance * spread]
+    );
+
+    const scale = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [0.88, 1, 0.95]
+    );
+
+    const opacity = useTransform(
+        progress,
+        [0, 0.2, 0.5],
+        [0.6, 1, 1]
+    );
+
+    const rotateZ = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [0, distance * 1.5, distance * 1.5]
+    );
+
+    return { x, scale, opacity, rotateZ };
 }
 
 function ScrollCardSection({
@@ -98,12 +134,16 @@ function ScrollCardSection({
     id: string;
 }) {
     const containerRef = useRef<HTMLDivElement>(null);
+
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        offset: ["start 80%", "end 60%"],
+        offset: ["start 85%", "center center", "end 15%"],
     });
 
-    const spread = cards.length <= 3 ? 320 : 240;
+    const spread = useMemo(() => {
+        if (typeof window === "undefined") return 220;
+        return Math.min(340, Math.max(300, window.innerWidth * 0.18));
+    }, []);
 
     return (
         <section id={id} className="py-20 bg-white overflow-hidden">
@@ -127,25 +167,33 @@ function ScrollCardSection({
                 </motion.p>
             </div>
 
+            {/* DESKTOP */}
             <div
                 ref={containerRef}
-                className="relative flex justify-center items-center"
-                style={{ height: "520px" }}
+                className="hidden md:flex relative w-full justify-center items-center overflow-visible"
+                style={{ height: "560px" }}
             >
                 {cards.map((card, i) => {
-                    const { x, scale, opacity } = useCardTransform(
+                    const { x, scale, opacity, rotateZ } = useCardTransform(
                         scrollYProgress,
                         i,
                         cards.length,
                         spread
                     );
-                    const zIndex = i === Math.floor(cards.length / 2) ? 10 : i;
+
+                    const zIndex = i === Math.floor(cards.length / 2) ? 50 : i;
 
                     return (
                         <motion.div
                             key={card.name}
-                            style={{ x, scale, opacity, zIndex }}
-                            className="absolute w-72 bg-white rounded-3xl overflow-hidden shadow-2xl"
+                            style={{
+                                x,
+                                scale,
+                                opacity,
+                                rotateZ,
+                                zIndex,
+                            }}
+                            className="absolute left-1/2 -translate-x-1/2 w-72 bg-white rounded-3xl overflow-hidden shadow-2xl will-change-transform"
                         >
                             <div className="relative h-48">
                                 <Image
@@ -156,21 +204,64 @@ function ScrollCardSection({
                                     sizes="288px"
                                 />
                                 {card.achievements && (
-                                    <div className="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                    <div className="absolute bottom-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
                                         {card.achievements}
                                     </div>
                                 )}
                             </div>
+
                             <div className="p-5">
-                                <h3 className="font-black text-gray-900 text-lg">{card.name}</h3>
-                                <p className="text-red-600 text-sm font-semibold mb-3">{card.role}</p>
-                                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                                <h3 className="font-black text-gray-900 text-lg">
+                                    {card.name}
+                                </h3>
+                                <p className="text-red-600 text-sm font-semibold mb-3">
+                                    {card.role}
+                                </p>
+                                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 whitespace-pre-wrap">
                                     {card.bio}
                                 </p>
                             </div>
                         </motion.div>
                     );
                 })}
+            </div>
+
+            {/* MOBILE */}
+            <div className="md:hidden px-4">
+                <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6">
+                    {cards.map((card) => (
+                        <div
+                            key={card.name}
+                            className="min-w-[280] snap-center bg-white rounded-3xl shadow-xl overflow-hidden"
+                        >
+                            <div className="relative h-44">
+                                <Image
+                                    src={card.image}
+                                    alt={card.name}
+                                    fill
+                                    className="object-cover"
+                                />
+                                {card.achievements && (
+                                    <div className="absolute bottom-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                        {card.achievements}
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="p-5">
+                                <h3 className="font-black text-gray-900 text-lg">
+                                    {card.name}
+                                </h3>
+                                <p className="text-red-600 text-sm font-semibold mb-3">
+                                    {card.role}
+                                </p>
+                                <p className="text-gray-600 text-sm leading-relaxed">
+                                    {card.bio}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );

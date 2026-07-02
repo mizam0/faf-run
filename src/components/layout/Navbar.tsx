@@ -1,39 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const links = [
-    { href: "/", label: "Главная" },
     { href: "/#groups", label: "Группы" },
     { href: "/#coaches", label: "Тренеры" },
-    { href: "/gallery", label: "Галерея" },
+    { href: "/shop", label: "Магазин" },
+    { href: "/gallery", label: "Мероприятия" },
     { href: "/contacts", label: "Контакты" },
 ];
 
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-
-    useEffect(() => {
-        const handler = () => setScrolled(window.scrollY > 50);
-        window.addEventListener("scroll", handler);
-        return () => window.removeEventListener("scroll", handler);
-    }, []);
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
-                }`}
+            className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-sm`}
         >
             <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
                 <Link
                     href="/"
-                    className={`font-bold text-xl tracking-tight transition-colors ${scrolled ? "text-gray-900" : "text-white"
-                        }`}
+                    className={`flex gap-2 items-center font-bold text-xl tracking-tight transition-colors text-gray-900`}
                 >
-                    <span className="text-red-600">⚡</span> ФАФ
+                    <Image
+                        src="/images/logo.webp"
+                        alt="Логотип сайта"
+                        width={30}
+                        height={30}
+                        className="rounded-full object-cover w-8 h-8"
+                    />
+                    FAF
                 </Link>
 
                 {/* Desktop links */}
@@ -42,16 +41,29 @@ export default function Navbar() {
                         <li key={l.href}>
                             <Link
                                 href={l.href}
-                                className={`text-sm font-medium transition-colors hover:text-red-600 ${scrolled ? "text-gray-700" : "text-white/90"
-                                    }`}
+                                className={`text-sm font-medium transition-colors hover:text-red-600 text-gray-700`}
                             >
                                 {l.label}
                             </Link>
                         </li>
                     ))}
-                    <li>
+                    <li className="flex gap-1">
                         <Link
-                            href="/#contact"
+                            href="https://t.me/ladinamo"
+                            target="_blank"
+                            className="bg-red-600 hover:bg-red-700 rounded-full p-2 transition-colors flex items-center justify-center"
+                        >
+                            <img src="/images/tg-white.svg" alt="Телеграм" className="w-5 h-5 object-cover" />
+                        </Link>
+                        <Link
+                            href="https://vk.com/fafrun"
+                            target="_blank"
+                            className="bg-red-600 hover:bg-red-700 rounded-full p-2 transition-colors flex items-center justify-center"
+                        >
+                            <img src="/images/vk.svg" alt="ВК" className="w-5 h-5 object-cover" />
+                        </Link>
+                        <Link
+                            href="#contact"
                             className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-5 py-2 rounded-full transition-colors"
                         >
                             Записаться
@@ -61,8 +73,7 @@ export default function Navbar() {
 
                 {/* Mobile burger */}
                 <button
-                    className={`md:hidden flex flex-col gap-1.5 ${scrolled ? "text-gray-900" : "text-white"
-                        }`}
+                    className={`md:hidden flex flex-col gap-1.5 text-gray-900`}
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label="Меню"
                 >
@@ -99,10 +110,26 @@ export default function Navbar() {
                                     </Link>
                                 </li>
                             ))}
-                            <li>
+                            <li className="flex gap-1">
                                 <Link
-                                    href="/#contact"
-                                    className="block text-center bg-red-600 text-white font-medium py-2.5 rounded-full hover:bg-red-700 transition-colors"
+                                    href="https://t.me/ladinamo"
+                                    target="_blank"
+                                    className="bg-red-600 hover:bg-red-700 rounded-full p-2.5 w-[52] transition-colors flex items-center justify-center"
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    <img src="/images/tg-white.svg" alt="Телеграм" className="w-5 h-5 object-cover" />
+                                </Link>
+                                <Link
+                                    href="https://vk.com/fafrun"
+                                    target="_blank"
+                                    className="bg-red-600 hover:bg-red-700 rounded-full p-2.5 w-[52] transition-colors flex items-center justify-center"
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    <img src="/images/vk.svg" alt="ВК" className="w-5 h-5 object-cover" />
+                                </Link>
+                                <Link
+                                    href="#contact"
+                                    className="bg-red-600 hover:bg-red-700 text-center text-white font-medium py-2.5 rounded-full transition-colors block w-full"
                                     onClick={() => setMenuOpen(false)}
                                 >
                                     Записаться

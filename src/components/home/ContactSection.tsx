@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { IMaskInput } from "react-imask";
 
 const schema = z.object({
     name: z.string().min(2, "Введите имя"),
@@ -23,6 +24,7 @@ export default function ContactSection() {
         register,
         handleSubmit,
         reset,
+        setValue,
         formState: { errors, isSubmitting },
     } = useForm<FormData>({ resolver: zodResolver(schema) });
 
@@ -107,10 +109,14 @@ export default function ContactSection() {
                                     <label className="block text-gray-400 text-sm mb-1.5">
                                         Телефон *
                                     </label>
-                                    <input
-                                        {...register("phone")}
+                                    <IMaskInput
+                                        mask="+7 (000) 000-00-00"
+                                        lazy={false}
                                         placeholder="+7 (___) ___-__-__"
-                                        type="tel"
+                                        {...register("phone")}
+                                        onAccept={(value: string) => {
+                                            setValue("phone", value, { shouldValidate: true });
+                                        }}
                                         className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors"
                                     />
                                     {errors.phone && (
@@ -128,10 +134,9 @@ export default function ContactSection() {
                                     className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors appearance-none"
                                 >
                                     <option value="" className="bg-gray-900">Выберите группу</option>
-                                    <option value="3-6" className="bg-gray-900">3–6 лет</option>
-                                    <option value="7-10" className="bg-gray-900">7–10 лет</option>
+                                    <option value="3-6" className="bg-gray-900">3–5 лет</option>
+                                    <option value="7-10" className="bg-gray-900">6–10 лет</option>
                                     <option value="11-14" className="bg-gray-900">11–14 лет</option>
-                                    <option value="15+" className="bg-gray-900">15+ лет</option>
                                 </select>
                                 {errors.age && (
                                     <p className="text-red-400 text-xs mt-1">{errors.age.message}</p>

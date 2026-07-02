@@ -24,7 +24,7 @@ export default function AgeGroupCards() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {ageGroups.map((group, i) => (
                         <motion.div
                             key={group.slug}
@@ -47,13 +47,15 @@ export default function AgeGroupCards() {
                                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/20 transition-opacity duration-300 group-hover:from-black/90 group-hover:via-black/60" />
 
                                     {/* Default state: age range centered */}
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center p-5 transition-all duration-300 group-hover:justify-start group-hover:pt-6">
-                                        <h3 className="text-white font-black text-2xl md:text-3xl transition-all duration-300 group-hover:text-xl">
-                                            {group.ageRange}
-                                        </h3>
-                                        <p className="text-white/80 font-medium text-sm mt-1 transition-all duration-300 group-hover:text-xs">
-                                            {group.title}
-                                        </p>
+                                    <div className="absolute inset-0 p-5">
+                                        <div className="flex flex-col items-center justify-center h-full transition-transform duration-500 ease-out group-hover:-translate-y-6">
+                                            <h3 className="text-white font-black text-2xl md:text-3xl transition-all duration-300 group-hover:text-xl">
+                                                {group.ageRange}
+                                            </h3>
+                                            <p className="text-white/80 font-medium text-sm mt-1 transition-all duration-300 group-hover:text-xs">
+                                                {group.title}
+                                            </p>
+                                        </div>
                                     </div>
 
                                     {/* Hover state: description at bottom */}

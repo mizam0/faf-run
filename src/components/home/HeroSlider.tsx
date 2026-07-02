@@ -7,17 +7,17 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
     {
-        src: "/images/hero-1.jpg",
+        src: "/images/hero-1.webp",
         title: "Растим чемпионов",
-        subtitle: "Лёгкая атлетика для детей от 3 до 18 лет",
+        subtitle: "Лёгкая атлетика для детей от 3 до 14 лет",
     },
     {
-        src: "/images/hero-2.jpg",
+        src: "/images/hero-2.webp",
         title: "Профессиональные тренеры",
         subtitle: "Опыт подготовки спортсменов всероссийского уровня",
     },
     {
-        src: "/images/hero-3.jpg",
+        src: "/images/hero-3.webp",
         title: "Современный спортивный зал",
         subtitle: "Оборудование для достижения лучших результатов",
     },
@@ -84,7 +84,7 @@ export default function HeroSlider() {
                                 Записаться бесплатно
                             </Link>
                             <a
-                                href="tel:+74951234567"
+                                href="tel:+79694557515"
                                 className="bg-white/20 hover:bg-white/30 backdrop-blur text-white font-bold px-8 py-4 rounded-full text-lg transition-all border border-white/40"
                             >
                                 Позвонить

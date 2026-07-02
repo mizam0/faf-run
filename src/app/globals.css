@@ -1,18 +1,24 @@
 @import "tailwindcss";
 @tailwind utilities;
 
-:root {
-    --brand: 220 38 38;
-    /* red-600 */
-    --brand-dark: 185 28 28;
-}
+@layer base {
+    :root {
+        --brand: 220 38 38;
+        /* red-600 */
+        --brand-dark: 185 28 28;
+    }
 
-html {
-    scroll-behavior: smooth;
-}
+    html {
+        scroll-behavior: smooth;
+    }
 
-body {
-    @apply bg-white text-gray-900 font-sans antialiased;
+    body {
+        @apply bg-white text-gray-900 font-sans antialiased;
+    }
+
+    ::selection {
+        background-color: rgb(220 38 38 / 0.2);
+    }
 }
 
 @layer utilities {
@@ -29,21 +35,43 @@ body {
     }
 }
 
-.react-photo-album--photo {
-    overflow: hidden;
-    border-radius: 0.75rem;
-    cursor: pointer;
+@layer components {
+    .react-photo-album--photo {
+        overflow: hidden;
+        border-radius: 0.75rem;
+        cursor: pointer;
+    }
+
+    .react-photo-album--photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+
+        transition: transform 0.5s ease;
+    }
+
+    .react-photo-album--photo:hover img {
+        transform: scale(1.1);
+    }
 }
 
-.react-photo-album--photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+/* Скролл брар */
 
-    transition: transform 0.5s ease;
+*::-webkit-scrollbar {
+    width: 8px;
 }
 
-.react-photo-album--photo:hover img {
-    transform: scale(1.1);
+*::-webkit-scrollbar-track {
+    display: none;
+}
+
+*::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: rgb(108, 108, 108);
+    border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(var(--brand));
 }

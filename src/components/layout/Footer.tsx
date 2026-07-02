@@ -1,13 +1,32 @@
 import Link from "next/link";
+import Image from "next/image"
+
+const navItems = [
+    ["/#groups", "Группы"],
+    ["/#coaches", "Тренеры"],
+    ["/gallery", "Галерея"],
+    ["/contacts", "Контакты"],
+    ["/shop", "Магазин"]
+]
 
 export default function Footer() {
     return (
         <footer className="bg-gray-900 text-gray-400 py-12">
             <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <div className="text-white font-bold text-xl mb-3">
-                        <span className="text-red-500">⚡</span> FAF
-                    </div>
+                    <Link
+                        href="/"
+                        className={`flex gap-2 items-center font-bold text-xl tracking-tight transition-colors text-white mb-4`}
+                    >
+                        <Image
+                            src="/images/logo.webp"
+                            alt="Логотип сайта"
+                            width={30}
+                            height={30}
+                            className="rounded-full object-cover w-8 h-8"
+                        />
+                        FAF
+                    </Link>
                     <p className="text-sm leading-relaxed">
                         Профессиональная школа лёгкой атлетики для детей и юношества.
                     </p>
@@ -16,12 +35,7 @@ export default function Footer() {
                 <div>
                     <h3 className="text-white font-semibold mb-4">Навигация</h3>
                     <ul className="space-y-2 text-sm">
-                        {[
-                            ["/#groups", "Группы"],
-                            ["/#coaches", "Тренеры"],
-                            ["/gallery", "Галерея"],
-                            ["/contacts", "Контакты"],
-                        ].map(([href, label]) => (
+                        {navItems.map(([href, label]) => (
                             <li key={href}>
                                 <Link href={href} className="hover:text-white transition-colors">
                                     {label}

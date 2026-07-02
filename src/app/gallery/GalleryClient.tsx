@@ -9,16 +9,17 @@ import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/plugins/captions.css";
 import { useState } from "react";
 
-// Замените на реальные фото. width/height обязательны для корректной верстки masonry
 const photos = [
-    { src: "/images/gallery/photo-1.jpg", width: 1200, height: 800, title: "Тренировка" },
-    { src: "/images/gallery/photo-2.jpg", width: 800, height: 1200, title: "Соревнования" },
-    { src: "/images/gallery/photo-3.jpg", width: 1600, height: 900, title: "Награждение" },
-    { src: "/images/gallery/photo-4.jpg", width: 900, height: 900, title: "Наши малыши" },
-    { src: "/images/gallery/photo-5.jpg", width: 1200, height: 1600, title: "Прыжки" },
-    { src: "/images/gallery/photo-6.jpg", width: 1600, height: 1000, title: "Спринт" },
-    { src: "/images/gallery/photo-7.jpg", width: 800, height: 1000, title: "Команда" },
-    { src: "/images/gallery/photo-8.jpg", width: 1200, height: 800, title: "Зал" },
+    { src: "/images/gallery/photo-1.jpg", width: 1707, height: 2560, title: "Забег" },
+    { src: "/images/gallery/photo-2.jpg", width: 1707, height: 2560, title: "Забег" },
+    { src: "/images/gallery/photo-3.jpg", width: 2560, height: 1707, title: "Забег" },
+    { src: "/images/gallery/photo-4.jpg", width: 2560, height: 1707, title: "Забег" },
+    { src: "/images/gallery/photo-5.jpg", width: 2560, height: 1707, title: "Забег" },
+    { src: "/images/gallery/photo-6.jpg", width: 1707, height: 2560, title: "Забег" },
+    { src: "/images/gallery/photo-7.jpg", width: 2560, height: 1707, title: "Забег" },
+    { src: "/images/gallery/photo-8.jpg", width: 2560, height: 1707, title: "Забег" },
+    { src: "/images/gallery/photo-9.jpg", width: 2560, height: 1707, title: "Забег" },
+    { src: "/images/gallery/photo-10.jpg", width: 1707, height: 2560, title: "Забег" },
 ];
 
 export default function GalleryClient() {
