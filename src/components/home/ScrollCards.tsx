@@ -11,37 +11,33 @@ import {
 
 interface CardData {
     name: string;
-    role: string;
     bio: string;
     image: string;
+    role?: string;
     achievements?: string;
 }
 
 const coaches: CardData[] = [
     {
         name: "Абакумова Галина Викторовна",
-        role: "Тренер",
         bio: "Стаж работы 40 лет. Ставит технику бега с нуля до золотых медалей.",
         image: "/images/coach-1.webp",
         achievements: "Заслуженный тренер России",
     },
     {
         name: "Абакумова Мария Васильевна",
-        role: "Тренер",
         bio: "Заслуженный мастер спорта России по легкой атлетике. Стаж работы тренером 8 лет.",
         image: "/images/coach--2.webp",
         achievements: "Чемпионка мира 2011 года",
     },
     {
         name: "Гребенюк Виктория Константиновна",
-        role: "Тренер/Инструктор",
         bio: "Стаж работы тренером 3 года. Девиз: «С нами бег становится лёгким»",
         image: "/images/coach--3.webp",
         achievements: "КМС по легкой атлетике",
     },
     {
         name: "Сизова Юлия Валентиновна",
-        role: "Тренер/Инструктор",
         bio: "Стаж работы 2 года. Девиз: «Cтавим технику, заряжаем энергией»",
         image: "/images/coach--4.webp",
         achievements: "КМС по легкой атлетике",
@@ -74,7 +70,7 @@ const champions: CardData[] = [
         name: "Виктория Резвухина",
         role: "Бег на 1км - 4.02",
         bio: "Победительница кросса нации 2025\nПризер первенства города\nПобедить пробега HDRD RUN",
-        image: "/images/champion-4.jpg",
+        image: "/images/champion-7.jpg",
         achievements: "",
     },
     {

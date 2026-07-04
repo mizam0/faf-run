@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContactSection from "@/components/home/ContactSection";
 import Link from "next/link";
+import { Phone, Map, Info } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Контакты",
@@ -21,17 +22,17 @@ export default function ContactsPage() {
             <section className="container mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
                     {
-                        icon: "📍",
+                        icon: <Map size={35} />,
                         title: "Адрес",
                         lines: ["г. Краснодар", "ул. Красная, 190", "Стадион Динамо"],
                     },
                     {
-                        icon: "📞",
+                        icon: <Phone size={35} />,
                         title: "Телефон",
                         lines: ["+7 (969) 455-75-15", "Пн–Пт: 9:00–20:00", "Сб: 10:00–17:00"],
                     },
                     {
-                        icon: "📝",
+                        icon: <Info size={35} />,
                         title: "О компании",
                         lines: ["Наименование: КРФСОО ФЛАФ", "ИНН: 2308302061", "КПП: 230801001", "ОГРН: 1252300038418" ],
                     },
@@ -40,7 +41,7 @@ export default function ContactsPage() {
                         key={item.title}
                         className="bg-gray-50 rounded-2xl p-8 text-center border border-gray-100"
                     >
-                        <div className="text-4xl mb-4">{item.icon}</div>
+                        <div className="mb-4 mx-auto w-fit">{item.icon}</div>
                         <h3 className="font-black text-xl text-gray-900 mb-3">{item.title}</h3>
                         {item.lines.map((line, i) => (
                             <p key={i} className="text-gray-600 text-sm">
