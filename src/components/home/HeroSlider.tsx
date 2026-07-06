@@ -22,6 +22,54 @@ const slides = [
         desktop: "/images/hero-4.webp",
         mobile: "/images/hero-4-mobile.webp",
     },
+    {
+        desktop: "/images/hero-5.webp",
+        mobile: "/images/hero-5-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-6.webp",
+        mobile: "/images/hero-6-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-7.webp",
+        mobile: "/images/hero-7-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-1.webp",
+        mobile: "/images/hero-8-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-2.webp",
+        mobile: "/images/hero-9-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-3.webp",
+        mobile: "/images/hero-10-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-4.webp",
+        mobile: "/images/hero-11-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-5.webp",
+        mobile: "/images/hero-12-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-6.webp",
+        mobile: "/images/hero-13-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-7.webp",
+        mobile: "/images/hero-14-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-6.webp",
+        mobile: "/images/hero-15-mobile.webp",
+    },
+    {
+        desktop: "/images/hero-5.webp",
+        mobile: "/images/hero-16-mobile.webp",
+    },
 ];
 
 export default function HeroSlider() {
